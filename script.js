@@ -14,8 +14,14 @@ function fetchJoke(url, id) {
         })
         .then(data => {
             let jokeDiv = document.getElementById(id);
+            let inputId = document.getElementById("jokeId");
+            let jokeId = data.id;
+            inputId.value = jokeId;
             if (url === "https://icanhazdadjoke.com/") {
-                jokeDiv.innerHTML = "<pre>"+data.joke;
+                jokeDiv.innerHTML += "<pre>" + data.joke;
+                let rating = document.querySelector("input[name=rating]:checked").value ;
+                jokeDiv.innerHTML += "Rating: "+rating;
+
             }
         })
         .catch(error => {
@@ -23,16 +29,18 @@ function fetchJoke(url, id) {
         })
 }
 
-
-
 let jokeBox = document.getElementById("jokes");
 let jokeButton = document.getElementById("jokeButton");
-let rating = document.getElementById("ratingForm");
+let submitRating = document.getElementById("ratingForm");
 
 jokeButton.addEventListener("click", () => {
     fetchJoke("https://icanhazdadjoke.com/", "jokes");
 })
 
-rating.addEventListener("submit", ()=>{
 
+submitRating.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let rating = document.querySelector("input[name=rating]:checked").value ;
+    console.log(rating, jokeId.value)
+    fetchJoke("https://icanhazdadjoke.com/", "jokes");
 });
