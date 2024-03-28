@@ -1,4 +1,6 @@
-.jokeBox{
+.jokeBox>div{
  display: flex;
- flex-direction: row;   
+ flex-direction: column;  
+ border-style: dashed; 
+
 }
