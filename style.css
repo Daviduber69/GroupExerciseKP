@@ -1,0 +1,4 @@
+.jokeBox{
+ display: flex;
+ flex-direction: row;   
+}
